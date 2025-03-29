@@ -1,6 +1,6 @@
 #[derive(Copy, Clone, Debug)]
 pub struct Hand {
-    cards: [u8; 10], // Max 10 cards (safe upper bound for blackjack)
+    cards: [u8; 20], // Max 10 cards (safe upper bound for blackjack)
     count: u8,       // Number of cards in the hand
     total: u8,       // Hand total
     soft: bool,      // True if hand is soft (Ace counted as 11)
@@ -10,7 +10,7 @@ impl Hand {
     #[inline(always)]
     pub fn new() -> Self {
         Self {
-            cards: [0; 10],
+            cards: [0; 20],
             count: 0,
             total: 0,
             soft: false,
@@ -22,7 +22,7 @@ impl Hand {
     /// Adds a card by index (0 = 10/J/Q/K, 1 = Ace, 2–9 = 2–9)
     #[inline(always)]
     pub fn add_card(&mut self, card_index: usize) {
-        if self.count >= 10 || card_index > 9 {
+        if self.count >= 20 || card_index > 9 {
             return;
         }
 
